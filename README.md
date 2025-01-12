@@ -28,7 +28,7 @@
    ./install.sh
    ```
 3. The installation script performs the following:
-   - Build the small Binary.
+   - Builds the small Binary.
    - Installs the binary to `/usr/bin/Arch-Update-Helper`.
    - Adds a default configuration file to `/etc/skel/.config/arch-update-helper`.
    - Creates a user-specific configuration file in `~/.config/arch-update-helper` for the installing user.
