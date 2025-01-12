@@ -12,7 +12,7 @@
 #include <QTimer>
 
 QString terminal = "kitty"; // Default terminal
-QString aurHelper = "paru"; // Default AUR helper
+QString aurHelper = "yay"; // Default AUR helper
 QString configFilePath = QDir::homePath() + "/.config/arch-update-helper";
 int updatesAvailable = 0; // Initial state: no updates available
 
