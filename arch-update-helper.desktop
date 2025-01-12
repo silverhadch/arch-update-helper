@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Arch-Update-Helper
+Comment=System tray utility for checking Arch Linux updates
+Exec=/usr/bin/Arch-Update-Helper
+Icon=system-software-update
+Terminal=false
+X-GNOME-Autostart-enabled=true
+X-KDE-autostart=true
+
