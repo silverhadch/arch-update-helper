@@ -8,11 +8,12 @@
 #include <QStringList>
 #include <QSystemTrayIcon>
 #include <QTextStream>
-#include <QThread> // <-- Add this line
+#include <QThread>
 #include <QTimer>
 
 QString terminal = "kitty"; // Default terminal
 QString aurHelper = "yay";  // Default AUR helper
+int minutes = 10;
 QString configFilePath = QDir::homePath() + "/.config/arch-update-helper";
 int updatesAvailable = 0; // Initial state: no updates available
 
@@ -27,6 +28,7 @@ void readConfig() {
       out << "# Configuration file for Arch Update Helper\n";
       out << "terminal=" << terminal << "\n";
       out << "aur_helper=" << aurHelper << "\n";
+      out << "minutes=" << minutes << "\n";
       configFile.close();
 #ifdef DEBUG
       qDebug() << "Default config file created at:" << configFilePath;
@@ -54,6 +56,18 @@ void readConfig() {
             terminal = value;
           } else if (key == "aur_helper") {
             aurHelper = value;
+          } else if (key == "minutes") {
+            bool ok;
+            int tempMinutes = value.toInt(&ok);
+            if (ok) {
+              minutes = tempMinutes;
+            } else {
+#ifdef DEBUG
+              qDebug() << "Invalid value for 'minutes' in config. Using "
+                          "default value:"
+                       << minutes;
+#endif
+            }
           }
         }
       }
@@ -109,8 +123,8 @@ bool isProcessRunning(const QString &processName) {
   process.start("pgrep", QStringList() << "-f" << processName);
   process.waitForFinished();
   QString output = process.readAllStandardOutput().trimmed();
-  return !output
-              .isEmpty(); // If the output is not empty, the process is running
+  return !output.isEmpty(); // If the output is not empty, the process is
+                            // running
 }
 
 int main(int argc, char *argv[]) {
@@ -166,8 +180,8 @@ int main(int argc, char *argv[]) {
           QProcess *process = new QProcess();
           process->startDetached(terminal, QStringList() << "-e" << aurHelper);
 #ifdef DEBUG
-          qDebug()
-              << "Waiting for the terminal and AUR helper process to finish...";
+          qDebug() << "Waiting for the terminal and AUR helper process to "
+                      "finish...";
 #endif
 
           // Watch for the terminal and AUR helper process to finish
@@ -208,7 +222,7 @@ int main(int argc, char *argv[]) {
     checkForUpdates();
     updateTrayIcon(trayIcon);
   });
-  updateTimer->start(600000); // Check every 10 minutes
+  updateTimer->start(minutes * 60000); // Check every 10 minutes
 
   return app.exec();
 }

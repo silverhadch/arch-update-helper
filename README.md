@@ -6,12 +6,13 @@
 
 ## **Features**  
 
-- Automatically checks for updates every **10 minutes** using your chosen AUR helper.  
+- Automatically checks for updates every **10 minutes** (Default value) using your chosen AUR helper.  
 - Sends notifications and updates the systray icon when updates are available.  
 - Clickable icon that opens a terminal to run the AUR helper, even if no updates are available.  
 - **Default terminal**: `kitty`  
-  **Default AUR helper**: `yay`  
-  *(Customizable via a simple two-line configuration file.)*  
+  **Default AUR helper**: `yay`
+  **Default Update Interval**: `10` (minutes)
+  *(Customizable via a simple three-line configuration file.)*  
 
 ---
 
@@ -38,6 +39,7 @@ You can customize the terminal emulator and AUR helper by editing (or creating, 
 ```bash
 terminal=kitty
 aur_helper=yay
+minutes=10
 ```  
 
 ### **Example:**  
@@ -45,6 +47,7 @@ To use `alacritty` as your terminal emulator and `paru` as your AUR helper:
 ```bash
 terminal=alacritty
 aur_helper=paru
+minutes=10
 ```  
 
 Other terminal emulators or AUR helpers must be explicitly set in this file.  
