@@ -17,23 +17,20 @@
 
 ## **Installation**  
 
-1. **Clone the repository:**  
+1. **Download the PKGBUILD:**  
    ```bash
-   git clone https://github.com/silverhadch/arch-update-helper.git
-   cd arch-update-helper
+   wget https://raw.githubusercontent.com/silverhadch/arch-update-helper/refs/heads/main/PKGBUILD
    ```  
 
-2. **Run the installation script:**  
+2. **Run the PKGBUILD:**  
    ```bash
-   ./install.sh
+   makepkg -si
    ```  
 
-3. **What the installation script does:**  
-   - Compiles the binary.  
+3. **What the PKGBUIL does:**  
+   - Compiles the binary.
+   - Make an Archlinux Package and installs it.
    - Installs the binary to `/usr/bin/Arch-Update-Helper`.  
-   - Adds a default configuration file to `/etc/skel/.config/arch-update-helper`.  
-   - Creates a user-specific configuration file in `~/.config/arch-update-helper` for the user running the script.  
-   - Adds a `.desktop` file to `/etc/xdg/autostart` for system-wide autostart functionality.  
 
 4. **Configuration for multiple users:**  
    - A default backup configuration is stored in `/etc/skel`.  
