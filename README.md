@@ -17,23 +17,15 @@
 
 ## **Installation**  
 
-1. **Download the PKGBUILD:**  
+The package is now available in the AUR and can be installed using your preferred AUR helper.  
+[arch-update-helper on AUR](https://aur.archlinux.org/packages/arch-update-helper)
+
+1. **Install from the AUR:**  
    ```bash
-   wget https://raw.githubusercontent.com/silverhadch/arch-update-helper/refs/heads/main/PKGBUILD
+   yay -S arch-update-helper
    ```  
-
-2. **Run the PKGBUILD:**  
-   ```bash
-   makepkg -si
-   ```  
-
-3. **What the PKGBUIL does:**  
-   - Compiles the binary.
-   - Make an Archlinux Package and installs it.
-   - Installs the binary to `/usr/bin/Arch-Update-Helper`.  
-
-4. **Configuration for multiple users:**  
-   - A default backup configuration is stored in `/etc/skel`.  
+2. **Configuration for multiple users:**  
+   - A default backup configuration is stored in `/etc/skel/.config`.  
    - If other users want to customize the AUR helper or terminal, a two-line configuration file will be automatically created in their home directories upon their first use of the helper.  
 
 ---
@@ -73,5 +65,6 @@ This project is licensed under the **GPLv3 License**.
 
 ## **Contributing**  
 
-Contributions and feedback are welcome! Open a pull request or an issue to share improvements or suggestions.  
+Contributions and feedback are welcome! Open a pull request or an issue to share improvements or suggestions.
+
 
