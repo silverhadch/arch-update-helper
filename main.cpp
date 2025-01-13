@@ -70,6 +70,7 @@ int checkForUpdates() {
 #ifdef DEBUG
   qDebug() << "Checking for updates...";
 #endif
+  readConfig();
   QProcess process;
   process.start(aurHelper, QStringList() << "-Qu");
   process.waitForFinished();
@@ -161,6 +162,7 @@ int main(int argc, char *argv[]) {
 #ifdef DEBUG
           qDebug() << "Tray icon clicked. Launching terminal and AUR helper...";
 #endif
+          readConfig();
           QProcess *process = new QProcess();
           process->startDetached(terminal, QStringList() << "-e" << aurHelper);
 #ifdef DEBUG
@@ -190,6 +192,7 @@ int main(int argc, char *argv[]) {
 #ifdef DEBUG
     qDebug() << "Check for updates clicked!";
 #endif
+    readConfig();
     QProcess::startDetached(terminal, QStringList() << "-e" << aurHelper);
   });
 
