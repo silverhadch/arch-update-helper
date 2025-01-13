@@ -8,3 +8,5 @@ add_executable(Arch-Update-Helper main.cpp)
 
 target_link_libraries(Arch-Update-Helper Qt6::Widgets)
 
+add_compile_definitions(DEBUG)
+

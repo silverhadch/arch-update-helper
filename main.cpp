@@ -12,14 +12,35 @@
 #include <QTimer>
 
 QString terminal = "kitty"; // Default terminal
-QString aurHelper = "yay"; // Default AUR helper
+QString aurHelper = "yay";  // Default AUR helper
 QString configFilePath = QDir::homePath() + "/.config/arch-update-helper";
 int updatesAvailable = 0; // Initial state: no updates available
 
 void readConfig() {
   QFile configFile(configFilePath);
-  if (configFile.exists() &&
-      configFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+
+  // Check if the file exists
+  if (!configFile.exists()) {
+    // Create the file with default values
+    if (configFile.open(QIODevice::WriteOnly | QIODevice::Text)) {
+      QTextStream out(&configFile);
+      out << "# Configuration file for Arch Update Helper\n";
+      out << "terminal=" << terminal << "\n";
+      out << "aur_helper=" << aurHelper << "\n";
+      configFile.close();
+#ifdef DEBUG
+      qDebug() << "Default config file created at:" << configFilePath;
+#endif
+    } else {
+#ifdef DEBUG
+      qDebug() << "Failed to create default config file at:" << configFilePath;
+#endif
+    }
+    return; // Exit as the default config is now created
+  }
+
+  // If the file exists, read its content
+  if (configFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
     QTextStream in(&configFile);
     while (!in.atEnd()) {
       QString line = in.readLine();
@@ -38,12 +59,11 @@ void readConfig() {
       }
     }
     configFile.close();
-  }
+  } else {
 #ifdef DEBUG
-  else {
-    qDebug() << "Config file not found or could not be opened. Using defaults.";
-  }
+    qDebug() << "Config file exists but could not be opened:" << configFilePath;
 #endif
+  }
 }
 
 int checkForUpdates() {
