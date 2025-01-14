@@ -19,14 +19,13 @@
 ## **Installation**  
 
 The package is now available in the AUR and can be installed using your preferred AUR helper.  
-[arch-update-helper on AUR](https://aur.archlinux.org/packages/arch-update-helper)
+[arch-update-helper on AUR](https://aur.archlinux.org/packages/arch-update-helper-git)
 
 1. **Install from the AUR:**  
    ```bash
-   yay -S arch-update-helper
+   yay -S arch-update-helper-git
    ```  
 2. **Configuration for multiple users:**  
-   - A default backup configuration is stored in `/etc/skel/.config`.  
    - If other users want to customize the AUR helper or terminal, a two-line configuration file will be automatically created in their home directories upon their first use of the helper.  
 
 ---
